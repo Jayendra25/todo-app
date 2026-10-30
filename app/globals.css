@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #f5f1e8;
+  --color-paper: #fbf9f4;
+  --color-ink: #17231d;
+  --color-muted: #5f6962;
+  --color-line: #e2ded3;
+  --color-lime: #d9f66f;
+  --color-lime-soft: #eefbc9;
+  --color-coral: #ff8b6a;
+  --color-mint: #b8efd5;
+
+  --font-sans: "Avenir Next", "Avenir", "Segoe UI", "Helvetica Neue", Arial,
+    sans-serif;
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-delayed: float 8s ease-in-out 1s infinite;
+  --animate-rise: rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-pop: pop 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-spin-slow: spin 1s linear infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--float-rotate, 0deg));
+  }
+  50% {
+    transform: translateY(-10px) rotate(var(--float-rotate, 0deg));
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+::selection {
+  background: var(--color-lime);
+  color: var(--color-ink);
+}
+
+.dot-grid {
+  background-image: radial-gradient(
+    rgba(23, 35, 29, 0.16) 0.8px,
+    transparent 0.8px
+  );
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
+
+.soft-shadow {
+  box-shadow:
+    0 1px 0 rgba(23, 35, 29, 0.04),
+    0 24px 60px -28px rgba(23, 35, 29, 0.35);
+}
+
+.card-shadow {
+  box-shadow:
+    0 2px 0 rgba(23, 35, 29, 0.04),
+    0 30px 80px -40px rgba(23, 35, 29, 0.45);
+}
+
+.scribble-underline {
+  background-image: linear-gradient(
+    to right,
+    transparent 2%,
+    var(--color-lime) 2%,
+    var(--color-lime) 98%,
+    transparent 98%
+  );
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  background-size: 100% 0.24em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

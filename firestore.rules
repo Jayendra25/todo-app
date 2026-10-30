@@ -1,0 +1,16 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Tandem boards are shared by link, with no accounts. Anyone holding a
+    // board URL may read and write that board's tasks.
+    //
+    // `list` is what permits the onSnapshot collection query in
+    // components/TodoBoard.tsx (rooms/{roomId}/todos ordered by createdAt).
+    // `get` covers single-document reads. Using `read` instead would be
+    // equivalent, but spelling both out makes the query requirement obvious.
+    match /rooms/{roomId}/todos/{todoId} {
+      allow get, list, create, update, delete: if true;
+    }
+  }
+}
